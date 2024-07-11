@@ -10,8 +10,8 @@ import {
   ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
-import Postbtn from "../components/Postbtn";
-import Input from "../components/Input";
+import Postbtn from "../../components/Postbtn";
+import Input from './../../components/Input';
 
 const login = () => {
   return (
