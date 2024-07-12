@@ -4,12 +4,19 @@ import {
   Image,
   StyleSheet,
   ScrollView,
+  Button,
 } from "react-native";
 import React from "react";
-import FrontImg from "../assets/FrontImg.png";
 import Postbtn from "../components/Postbtn";
+import Input from "../components/Input";
+import FrontImg from "../assets/FrontImg.png";
+import { Link, useNavigation } from "@react-navigation/native";
 
-const homeScreen = () => {
+const HomeScreen = () => {
+  const navigation = useNavigation();
+  const handle = () => {
+    navigation.navigate("Started");
+  };
   return (
     <ScrollView>
       <View>
@@ -26,22 +33,26 @@ const homeScreen = () => {
         </Text>
       </View>
       <View style={Styles.btn_container}>
-          <Postbtn title="Post" iconName="sc-telegram" iconColor="#E6F2FF" 
-          />
+        <Postbtn
+          title="Started"
+          iconName="sc-telegram"
+          iconColor="#E6F2FF"
+          onPress={handle}
+        />
         <Postbtn
           title="Log In"
           iconName="sc-telegram"
           buttonStyle={Styles.custombtn}
           textStyle={Styles.customText}
           iconColor="#007AFF"
-
+          // onPress={() => navigation.navigate('LoginScreen')}
         />
       </View>
     </ScrollView>
   );
 };
 
-export default homeScreen;
+export default HomeScreen;
 
 const Styles = StyleSheet.create({
   text_lg: {

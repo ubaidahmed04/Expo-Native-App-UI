@@ -1,5 +1,3 @@
-// login screen
-
 import React from "react";
 import {
   View,
@@ -10,42 +8,84 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import { MaterialCommunityIcons } from "react-native-vector-icons";
-import Postbtn from "../../components/Postbtn";
-import Input from './../../components/Input';
+import {
+  MaterialCommunityIcons,
+  FontAwesome6,
+} from "react-native-vector-icons";
+import Postbtn from "../components/Postbtn";
+import Input from "../components/Input";
+import { useNavigation } from "@react-navigation/native";
 
-const login = () => {
+const LoginScreen = () => {
+  const navigation = useNavigation();
+  const handle = () => {
+    navigation.navigate("HomeScreen");
+  };
   return (
     <ScrollView>
       <MaterialCommunityIcons
         name="arrow-left-drop-circle"
         size={40}
         color="#007AFF"
+        onPress={() => {
+          navigation.goBack();
+        }}
         style={{ position: "absolute", top: 80, left: 40 }}
       />
       <View style={{ marginTop: 140, padding: 15, paddingLeft: 30 }}>
-        <Text style={styles.title}>Let's Get Started</Text>
+        <View
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: 50,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#F7F7F7",
+            marginLeft: 5,
+          }}
+        >
+          <View
+            style={{
+              borderWidth: 0.1,
+              borderColor: "#c3c3c3",
+              padding: 6,
+              borderRadius: 50,
+              backgroundColor: "#fff",
+            }}
+          >
+            <FontAwesome6 name="user-large" size={28} color="#525866" />
+          </View>
+        </View>
+        <Text style={styles.title}>Login</Text>
         <Text style={styles.subtitle}>
-          Enter your credentials to create your account
+          Enter Your Credentials To Access Your Account
         </Text>
         <View style={{ marginTop: 20 }}>
-          <Text style={{ fontSize: 12 ,fontWeight:"700"}}>Full Name</Text>
-          <Input placeholder="Enter Full Name" iconName="user-circle-o" />
-          <Text style={{ fontSize: 12 ,fontWeight:"700"}}>Email</Text>
-
+          <Text style={{ fontSize: 12, fontWeight: "700" }}>Email Address</Text>
           <Input placeholder="Enter Email" iconName="envelope" />
-          <Text style={{ fontSize: 12 ,fontWeight:"700"}}>Password</Text>
+          <Text style={{ fontSize: 12, fontWeight: "700" }}>Password</Text>
 
           <Input placeholder="Enter Password" iconName="lock" secureTextEntry />
           <View style={styles.checkboxContainer}>
             {/* <TextInput type="check" /> */}
-            <Text style={{ fontSize: 12 ,fontWeight:"700"}}>Agree to terms & conditions</Text>
+            <View>
+              <Text>Remember me</Text>
+            </View>
+            <View>
+              <Text
+                style={{ fontSize: 12, fontWeight: "700", color: "#007BFF" }}
+              >
+                Forget Password
+              </Text>
+            </View>
           </View>
           <View
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              marginTop: 10,
             }}
           >
             <Postbtn title="Post" iconName="sc-telegram" iconColor="#E6F2FF" />
@@ -62,6 +102,7 @@ const login = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              marginTop: 10,
             }}
           >
             <Postbtn
@@ -70,18 +111,19 @@ const login = () => {
               buttonStyle={styles.custombtn}
               textStyle={styles.customText}
               iconColor="#000"
+              onPress={handle}
             />
           </View>
           <View
             style={{ display: "flex", flexDirection: "row", alignItems: "" }}
           >
             <View>
-            <Text style={styles.footerText}>
-              Already have an Account?
-            </Text>
+              <Text style={styles.footerText}>Already have an Account?</Text>
             </View>
             <View>
-            <Pressable style={styles.loginBtn}><Text style={{color: "#007BFF"}}>Login</Text></Pressable>
+              <Pressable style={styles.loginBtn}>
+                <Text style={{ color: "#007BFF" }}>Login</Text>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -90,14 +132,14 @@ const login = () => {
   );
 };
 
-export default login;
+export default LoginScreen;
 const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: "600",
     lineHeight: 30,
     letterSpacing: 1.2,
-    paddingTop: 50,
+    paddingTop: 20,
   },
   subtitle: {
     fontSize: 10,
@@ -107,8 +149,8 @@ const styles = StyleSheet.create({
   },
   checkboxContainer: {
     flexDirection: "row",
-    alignItems: "center",
     marginVertical: 10,
+    justifyContent: "space-between",
   },
   divider: {
     marginVertical: 5,
@@ -136,8 +178,8 @@ const styles = StyleSheet.create({
     padding: 7,
     fontWeight: "700",
     fontSize: 14,
-    top:13,
-    borderRadius:7,
-    marginLeft:20
+    top: 13,
+    borderRadius: 7,
+    marginLeft: 20,
   },
 });
